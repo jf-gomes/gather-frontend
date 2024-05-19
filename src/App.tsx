@@ -27,8 +27,8 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home size={size} setEventId={setEventId} />}></Route>
-          <Route path="/info" element={<EventDetails size={size} eventId={eventId} />}></Route>
+          <Route path="/gather-frontend" element={<Home size={size} setEventId={setEventId} />}></Route>
+          <Route path="/gather-frontend/info" element={<EventDetails size={size} eventId={eventId} />}></Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

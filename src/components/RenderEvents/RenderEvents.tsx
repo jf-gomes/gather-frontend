@@ -53,7 +53,7 @@ export default function RenderEvents({ setEventId }: RenderEventsProps){
                                 <a href={event.link} target="_blank" className="text-center bg-air-superiority-blue p-2 text-white transition hover:bg-hover-blue rounded"><button>Inscrição</button></a>
                                 <button className="text-center bg-tea-green p-2 text-white transition hover:bg-hover-green rounded" onClick={() => {
                                     setEventId(event._id)
-                                    navigate('/info')
+                                    navigate('/gather-frontend/info')
                                 }}>Saber mais</button>
                             </div>
                         </div>
@@ -80,7 +80,7 @@ export default function RenderEvents({ setEventId }: RenderEventsProps){
                                 <button className="text-center bg-tea-green p-2 text-white transition hover:bg-hover-green rounded" onClick={() => {
                                     setSelectedFilters([])
                                     setEventId(event._id)
-                                    navigate('/info')
+                                    navigate('/gather-frontend/info')
                                 }}>Saber mais</button>
                             </div>
                         </div>
