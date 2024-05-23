@@ -14,6 +14,9 @@ export default {
         'hover-blue': '#A4D3EE',
         'hover-green': '#D1F5D4'
       },
+      maxWidth: {
+        '63': '63rem'
+      }
     },
   },
   plugins: [],

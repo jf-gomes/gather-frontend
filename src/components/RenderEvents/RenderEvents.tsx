@@ -3,6 +3,7 @@ import { api } from "../../services/api"
 import { useNavigate } from "react-router-dom"
 import { Dispatch, SetStateAction } from "react"
 import { AuthContext } from "../../contexts/auth"
+import Loader from "../Loader/Loader"
 
 export interface Event{
     _id: string,
@@ -22,11 +23,14 @@ interface RenderEventsProps{
 export default function RenderEvents({ setEventId }: RenderEventsProps){
 
     async function getEvents(){
+        setLoader(true)
         const response = await api.get("/events/show")
         setEvents(response.data)
+        setLoader(false)
     }
 
     const [events, setEvents] = useState<Event[]>([])
+    const [loader, setLoader] = useState<boolean>(false)
 
     useEffect(() => {
        getEvents()
@@ -34,14 +38,15 @@ export default function RenderEvents({ setEventId }: RenderEventsProps){
 
     const navigate = useNavigate()
 
-    const { selectedFilters, setSelectedFilters, eventsAmount, setEventsAmount }: any = useContext(AuthContext)
+    const { selectedFilters, setSelectedFilters }: any = useContext(AuthContext)
 
     if (selectedFilters.length == 0){
         return (
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-6 max-w-63">
                 <h2 className="font-bold">Resultados</h2>
+                {loader && <Loader loadingText="Buscando cursos..." />}
                 <div className="flex flex-wrap gap-6">
-                    {events?.filter((event) => events.indexOf(event) <= eventsAmount).map((event) => (
+                    {events?.map((event) => (
                         <div className="w-80 border p-6 flex flex-col gap-6 rounded-xl" key={event._id}>
                             <div>
                                 <p className="font-bold">{event.name}</p>
@@ -59,7 +64,6 @@ export default function RenderEvents({ setEventId }: RenderEventsProps){
                         </div>
                     ))}
                 </div>
-                {eventsAmount <= events?.length ? <button onClick={() => setEventsAmount(eventsAmount + 4)}>Ver mais</button> : null}
             </div>
         )
     } else {
@@ -67,7 +71,7 @@ export default function RenderEvents({ setEventId }: RenderEventsProps){
             <div className="flex flex-col gap-6">
                 <h2 className="font-bold">Resultados</h2>
                 <div className="flex flex-wrap gap-6">
-                    {events?.filter(event => selectedFilters.indexOf(event.theme) != -1 <= eventsAmount).map((event) => (
+                    {events?.filter(event => selectedFilters.indexOf(event.theme) != -1).map((event) => (
                         <div className="w-80 border p-6 flex flex-col gap-6 rounded-xl" key={event._id}>
                             <div>
                                 <p className="font-bold">{event.name}</p>
