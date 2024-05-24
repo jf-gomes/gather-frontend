@@ -28,7 +28,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/gather-frontend" element={<Home size={size} setEventId={setEventId} />}></Route>
-          <Route path="/gather-frontend/info" element={<EventDetails size={size} eventId={eventId} />}></Route>
+          <Route path="/gather-frontend/info" element={<EventDetails eventId={eventId} />}></Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
