@@ -14,41 +14,48 @@ interface FilterProps{
     size: number
 }
 
+interface HoursLong{
+    id: number,
+    classification: string,
+    minHour: number,
+    maxHour?: number
+}
+
 const categories: Category[] = [
     {
         id: 0,
-        title: "Tecnologia",
+        title: "Tecnologia, computação e engenharias",
         name: "technology"
     },
     {
         id: 1,
-        title: "Negócios",
+        title: "Negócios e gestão",
         name: "business"
     },
     {
-        id: 2,
-        title: "Saúde",
-        name: "health"
-    },
-    {
-        id: 3,
-        title: "Indústria e engenharias",
-        name: "industry"
-    },
-    {
         id: 4,
-        title: "Educação",
+        title: "Educação e desenvolvimento pessoal",
         name: "education"
+    }
+]
+
+const hoursLong: HoursLong[] = [
+    {
+        id: 0,
+        classification: "Curta (até 16 horas)",
+        minHour: 1,
+        maxHour: 16
     },
     {
-        id: 5,
-        title: "Idiomas",
-        name: "languages"
+        id: 1,
+        classification: "Média (até 48 horas)",
+        minHour: 17,
+        maxHour: 48
     },
     {
-        id: 6,
-        title: "Outros",
-        name: "others"
+        id: 2,
+        classification: "Longa (mais de 49 horas)",
+        minHour: 49
     }
 ]
 
@@ -60,9 +67,9 @@ export default function Filter({ change, setChange, size }: FilterProps){
 
     return (
         <div className="flex flex-col gap-6">
-            <h3 className="font-bold">Filtros</h3>
+            <h3 className="font-bold text-2xl">Filtros</h3>
             <div className="flex flex-col gap-2">
-                <h3>Tema</h3>
+                <h3 className="font-bold">Tema</h3>
                 <div className={filterCheckboxLabelDivStyles}>
                     {categories.map((category) => (
                     <div className="flex gap-6" key={category.id}>
@@ -72,6 +79,17 @@ export default function Filter({ change, setChange, size }: FilterProps){
                         }
                     } />
                         <p>{category.title}</p>
+                    </div>
+                ))}
+                </div>
+            </div>
+            <div className="flex flex-col gap-2">
+                <h3 className="font-bold">Duração</h3>
+                <div className={filterCheckboxLabelDivStyles}>
+                    {hoursLong.map((hoursLong) => (
+                    <div className="flex gap-6" key={hoursLong.id}>
+                        <input type="radio" name="hourLong" id={hoursLong.classification} value={hoursLong.classification}  />
+                        <p>{hoursLong.classification}</p>
                     </div>
                 ))}
                 </div>

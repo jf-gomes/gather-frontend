@@ -2,6 +2,7 @@ import Header from "../../components/Header/Header";
 import Filter from "../../components/Filter/Filter";
 import RenderEvents from "../../components/RenderEvents/RenderEvents";
 import { Dispatch, SetStateAction, useState } from "react";
+import Footer from "../../components/Footer/Footer";
 
 interface HomeProps{
     size: number,
@@ -19,6 +20,7 @@ export default function Home({ size, setEventId }: HomeProps){
                 <Filter change={change} setChange={setChange} size={size} />
                 <RenderEvents setEventId={setEventId} />
             </main>
+            <Footer />
         </>
     )
 }
