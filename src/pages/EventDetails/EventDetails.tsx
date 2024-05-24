@@ -6,11 +6,10 @@ import { useNavigate } from "react-router-dom"
 import Loader from "../../components/Loader/Loader"
 
 interface EventDetailsProps{
-    size: number,
     eventId: string
 }
 
-export default function EventDetails({ size, eventId }: EventDetailsProps){
+export default function EventDetails({ eventId }: EventDetailsProps){
 
     const [eventInfo, setEventInfo] = useState<Event>({
         _id: "string",
@@ -55,14 +54,14 @@ export default function EventDetails({ size, eventId }: EventDetailsProps){
     if (loader){
         return (
             <>
-                <Header size={size} />
+                <Header />
                 <Loader loadingText="Carregando dados do curso..." />
             </>
         )
     } else {
         return (
             <>
-                <Header size={size} />
+                <Header />
                 <main className="m-12">
                     <div className="border max-w-3xl p-12 flex flex-col gap-6">
                         <h3 className="font-bold text-xl bg-air-superiority-blue p-2 text-white shadow">{eventInfo?.name}</h3>

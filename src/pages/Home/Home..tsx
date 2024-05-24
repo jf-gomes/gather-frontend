@@ -15,7 +15,7 @@ export default function Home({ size, setEventId }: HomeProps){
 
     return (
         <>
-            <Header size={size} />
+            <Header />
             <main className="flex p-12 gap-12 flex-wrap">
                 <Filter change={change} setChange={setChange} size={size} />
                 <RenderEvents setEventId={setEventId} />
