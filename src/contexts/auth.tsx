@@ -21,10 +21,10 @@ export default function AuthProvider({ children }: AuthProviderProps){
         }
     }
 
-    const [eventsAmount, setEventsAmount] = useState<number>(4)
+    const [hourFilter, setHourFilter] = useState<string>("")
   
     return (
-        <AuthContext.Provider value={{selectedFilters, setSelectedFilters, addFilter, eventsAmount, setEventsAmount }}>
+        <AuthContext.Provider value={{selectedFilters, setSelectedFilters, addFilter, hourFilter, setHourFilter }}>
             { children }
         </AuthContext.Provider>
     )

@@ -16,7 +16,8 @@ interface FilterProps{
 
 interface HoursLong{
     id: number,
-    classification: string,
+    title: string,
+    value: string,
     minHour: number,
     maxHour?: number
 }
@@ -42,19 +43,22 @@ const categories: Category[] = [
 const hoursLong: HoursLong[] = [
     {
         id: 0,
-        classification: "Curta (até 16 horas)",
+        title: "Curta (até 16 horas)",
+        value: "short",
         minHour: 1,
         maxHour: 16
     },
     {
         id: 1,
-        classification: "Média (até 48 horas)",
+        title: "Média (entre 17 e 48 horas)",
+        value: "medium",
         minHour: 17,
         maxHour: 48
     },
     {
         id: 2,
-        classification: "Longa (mais de 49 horas)",
+        title: "Longa (mais de 49 horas)",
+        value: "long",
         minHour: 49
     }
 ]
@@ -63,7 +67,7 @@ export default function Filter({ change, setChange, size }: FilterProps){
 
     const filterCheckboxLabelDivStyles: string = size < 640 ? "flex flex-col gap-2 max-h-36 flex-wrap" : "flex flex-col gap-2"
 
-    const { addFilter }: any = useContext(AuthContext)
+    const { addFilter, setHourFilter }: any = useContext(AuthContext)
 
     return (
         <div className="flex flex-col gap-6">
@@ -88,10 +92,14 @@ export default function Filter({ change, setChange, size }: FilterProps){
                 <div className={filterCheckboxLabelDivStyles}>
                     {hoursLong.map((hoursLong) => (
                     <div className="flex gap-6" key={hoursLong.id}>
-                        <input type="radio" name="hourLong" id={hoursLong.classification} value={hoursLong.classification}  />
-                        <p>{hoursLong.classification}</p>
+                        <input type="radio" name="hourLong" id={hoursLong.title} value={hoursLong.value} onChange={(v) => setHourFilter(v.target.value)}  />
+                        <p>{hoursLong.title}</p>
                     </div>
                 ))}
+                    <div className="flex gap-6">
+                        <input type="radio" name="hourLong" id="allHours" value="" onChange={(v) => setHourFilter(v.target.value)}  />
+                        <p>Tudo</p>
+                    </div>
                 </div>
             </div>
         </div>
